@@ -5,6 +5,19 @@
 
 #define MAX 99999
 
+void tripletFinder(int sum, int* a, int size) {
+    for (int i = 0; i < sum - 2; i++) {
+        for (int j = i + 1; j < sum - 1; j++) {
+            for (int k = j + 1; k < sum; k ++) {
+                if ((a[i] + a[j] + a[k]) == sum) {
+                    printf("%d, %d, %d total to %d\nMultiplication is %d\n\r", a[i], a[j],
+                            a[k], sum, a[i] * a[j] * a[k]);
+                }
+            }
+        }
+    }
+}
+
 void pairFinder(int sum, int* a, int size) {
     int x;
 
@@ -41,6 +54,7 @@ int main() {
     }
 
     pairFinder(2020, a, i);
+    tripletFinder(2020, a, i);
 
     fclose(f);
     free(a);
