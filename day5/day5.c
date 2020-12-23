@@ -5,8 +5,18 @@
 #define NUM_OF_ROWS     128
 #define NUM_OF_COL      8
 
+#define EMPTY_SEAT      '.'
+#define TAKEN_SEAT      'x'
 
 int main() {
+    char seats[NUM_OF_ROWS][NUM_OF_COL];
+
+    for (int i = 0; i < NUM_OF_ROWS; i++) {
+        for (int j = 0; j < NUM_OF_COL; j++) {
+            seats[i][j] = EMPTY_SEAT;
+        }
+    }
+
     FILE* f = fopen("input.txt", "r");
         if (f == NULL) {
             perror("fopen");
@@ -42,16 +52,26 @@ int main() {
                 if (counter == 10) {
                     col = colMin;
                     i = row * 8 + col;
-                    
+                    seats[(int)row][(int)col] = TAKEN_SEAT;
                 }
             } else if (c == 'L') {
                 colMax = floor((colMax + colMin)/2);
                 if (counter == 10) {
                     col = colMax;
                     i = row * 8 + col;
+                    seats[(int)row][(int)col] = TAKEN_SEAT;
                 }
             }
         }
-        printf("highest ID: %f\n", highest);
+
+        for (int i = 0; i < NUM_OF_ROWS; i++) {
+            for (int j = 0; j < NUM_OF_COL; j++) {
+                if (seats[i][j] == '.') {
+                    printf("row: %d, col: %d, id: %d\n", i, j, (i * 8 + j));
+                }
+                printf("%c", seats[i][j]);
+            }
+            printf("\n");
+        }
     return 1;                                                                 
 }
