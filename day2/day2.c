@@ -1,4 +1,10 @@
-#include "helpers.h"
+#define _GNU_SOURCE
+#include <stdlib.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <string.h>
+
+
 #define BUFF            1
 #define MINMAX          0
 #define GETCHAR         1

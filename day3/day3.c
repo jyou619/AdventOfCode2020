@@ -1,4 +1,6 @@
-#include "helpers.h"
+#include <stdio.h>
+#include <string.h>
+
 #define WIDTH           999
 #define HEIGHT          999
 typedef struct Coordinate {

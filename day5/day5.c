@@ -1,4 +1,5 @@
-#include "helpers.h"
+#include <stdio.h>
+#include <math.h>
 
 #define BUFF            99999
 

@@ -1,4 +1,10 @@
-#include "helpers.h"
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+#include "memory.h"
 
 #define BUFF            99999
 
@@ -138,16 +144,11 @@ bool valid_passport(char* batch) {
     struct PP_Fields passport;
     init_passport(&passport);
 
-    // printf("batch[i]: %s\n", batch);
-
     for (int i = 0; i < strlen(batch); i++) {
-        // printf("batch[i]: %c\n", batch[i]);
         // End of field, start new token
         if (batch[i] == '\n' || batch[i] == ' ') {
-            printf("token: %s\n", token);
             if (!is_present(&passport, token)) {
                 memset(token, 0, BUFF);
-                printf("not valid\n");
                 return false;
             }
             memset(token, 0, BUFF);
@@ -159,11 +160,8 @@ bool valid_passport(char* batch) {
         } else {
             token[j] = batch[i];
             j++;
-            // printf("token: %s, batch[i]: %c\n", token, batch[i]);
         }
     }
-    printf("Answer: %d\n", (passport.birth_year && passport.issue_year && passport.expir_year && 
-            passport.height && passport.hair_color && passport.eye_color && passport.passport_id));
     return (passport.birth_year && passport.issue_year && passport.expir_year && 
             passport.height && passport.hair_color && passport.eye_color && passport.passport_id);
 }
