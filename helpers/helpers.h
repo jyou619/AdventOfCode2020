@@ -5,6 +5,7 @@
 #include <stdbool.h>
 #include <assert.h>
 #include <ctype.h>
+#include <math.h>
 
 void *my_realloc(void* p, size_t ogLength, size_t newLength);
 char *strremove(char *str, const char *sub);
