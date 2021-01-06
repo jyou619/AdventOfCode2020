@@ -19,8 +19,8 @@ for line in f:
     rules[bag] = contains
 
 G = nx.DiGraph()
-for bag, contains in rules.items():
-    for _, child in contains:
+for bag,contains in rules.items():
+    for _,child in contains:
         G.add_edge(child, bag)
 
 def get_bags(type):
