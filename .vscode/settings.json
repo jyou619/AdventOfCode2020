@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "random": "c",
-        "fstream": "cpp"
-    },
-    "python.pythonPath": "aocenv/bin/python"
-}
