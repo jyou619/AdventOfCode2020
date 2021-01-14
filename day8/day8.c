@@ -62,7 +62,8 @@ void run(BootState *boot, Operation *ops) {
     }
 }
 
-bool terminates(BootState *boot, bool seen[MAX], Operation *ops, int lines) {
+bool terminates(BootState *boot, Operation *ops, int lines) {
+    bool seen[MAX] = { 0 };
     while(!has_seen(boot->opNum, seen)) {
         seen[boot->opNum] = 1;
         run(boot, ops);
@@ -81,7 +82,6 @@ int main() {
     }
 
     int lines = 0;
-    bool seen[MAX] = { 0 };
     char l[BUFF];
     Operation ops[MAX];
     BootState boot;
@@ -101,16 +101,19 @@ int main() {
     // }
 
     // Part one
-    // if (!terminates(&boot, seen, ops, lines)) {
-    //     printf("Loop detected! acc=%d\n", boot.acc);
-    // }
-
+    if (!terminates(&boot, ops, lines)) {
+        printf("Loop detected! acc=%d\n", boot.acc);
+    }
+    
+    
     // Part two
     for (int i = 0; i < lines; i++) {
+        boot.acc = 0;
+        boot.opNum = 0;
         switch (ops[i].op) {
             case JMP:
                 ops[i].op = NOP;
-                if (terminates(&boot, seen, ops, lines)) {
+                if (terminates(&boot, ops, lines)) {
                     printf("Termination complete: changed line %d, acc=%d\n", i, boot.acc);
                     return 1;
                 }
@@ -118,7 +121,7 @@ int main() {
                 break;
             case NOP:
                 ops[i].op = JMP;
-                if (terminates(&boot, seen, ops, lines)) {
+                if (terminates(&boot, ops, lines)) {
                     printf("Termination complete: changed line %d, acc=%d\n", i, boot.acc);
                     return 1;
                 }
