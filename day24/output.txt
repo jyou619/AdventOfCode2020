@@ -1,0 +1,19 @@
+// blacks = 0;
+    // for (int c = 0; c < DAYS; c++) {
+    //     for (int i = -GRIDSIZE; i < GRIDSIZE; i++) {
+    //         for (int j = -GRIDSIZE; j < GRIDSIZE; j++) {
+    //             for (int k = -GRIDSIZE; k < GRIDSIZE; k++) {
+    //                 vector->x = i;
+    //                 vector->y = j;
+    //                 vector->z = k;
+    //                 if (follows_rule(tiles, vector)) {
+    //                     toFlip[hasher(vector)] = *vector;
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     for (int x = 0; x < BUFF; x++) {
+    //         flipper(tiles, &toFlip[x], &blacks);
+    //     }
+    //     memcpy(toFlip, empty, BUFF);
+    // }
